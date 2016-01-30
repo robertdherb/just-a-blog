@@ -1,0 +1,4 @@
+DirectoryIndex index.php
+
+RewriteEngine On
+RewriteRule ^(.*)/(.*)$ index.php?post=$1 [NC,L]
