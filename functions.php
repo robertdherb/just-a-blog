@@ -22,6 +22,8 @@ function write_html() {
 		}
 	}
 
+	$output = str_replace( "{allposts}", post_list(), $output );
+
 	print( $output );
 
 }
@@ -33,6 +35,35 @@ function format_name( $name ) {
 	$returnThisName = ucwords( $returnThisName );
 
 	return $returnThisName;
+
+}
+
+function link_name( $name ) {
+	return str_replace( ".md", "", $name );
+}
+
+function post_list() {
+	
+	$posts = scandir( "posts/" );
+	$posts = array_diff( $posts, array( "..", "." ) );
+	$postDates = array();
+	foreach( $posts as $thisPost ) {
+		$postDates[] = filectime( "posts/" . $thisPost);
+	}
+	
+	$posts = array_combine( $postDates, $posts );
+	krsort( $posts );
+
+
+	$output = "\n\t<ul id=\"posts\">";
+	
+	foreach( $posts as $thisPost ) {
+		$output .= "\n\t\t<li><a href=\"" . URL . BLOG_DIR . "/post/" . link_name( $thisPost ) . "\">" . date( "Y-m-d", key( $posts ) ) . " - " . format_name( $thisPost ) . "</a></li>";
+	}
+
+	$output .= "\n\t</ul>";
+
+	return $output;
 
 }
 
