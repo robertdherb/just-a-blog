@@ -9,12 +9,13 @@
 	 * (c) 2016 Robert D Herb
 	 * All rights reserved.
 	 *
-	 * For more information see LICENSE.md
+	 * For more information see LICENSE
 	 *
 	 */
 
 $documentRoot = $_SERVER["DOCUMENT_ROOT"];
 require_once( "functions.php" );
+require_once( "lib/parsedown/Parsedown.php" );
 
 	/* This should probably be an ini file */
 $url = "http://localhost/";
@@ -45,15 +46,37 @@ if( !file_exists( "pages/home.md" ) ) {
 
 $postDates = array();
 foreach( $posts as $thisPost ) {
-	$postDates[filectime( "pages/" . $thisPage)] = $thisPage;
+//	$postDates[filectime( "posts/" . $thisPost)] = $thisPost;
+	$postDates[] = filectime( "posts/" . $thisPost);
 }
 
+$posts = array_combine( $postDates, $posts );
+
 sort( $pages );
-rsort( $postDates );
+krsort( $posts );
 
 $headerHtml = "templates/header.html";
 include( "header.php" );
+$parsedown = new Parsedown();
 
-//foreach( $pageDates as $thisDate ) {}
+if( isset( $_GET['page'] ) ) {
+	$content = file_get_contents( "pages/" . $_GET['page'] . ".md" );
+}
+else if( isset( $_GET['post'] ) ) {
+	$content = file_get_contents( "posts/" . $_GET['post'] . ".md" );
+
+}
+else {
+	print( "
+	<ul id=\"posts\">" );
+	foreach( $posts as $thisPost ) {
+		print( "
+		<li><a href=\"" . $url . $blogDir . "pages/" . $thisPost . "\">" . date( "Y-m-d", key( $posts ) ) . " - " . format_name( $thisPost ) . "</a></li>" );
+	}
+	print( "
+	</ul>" );
+
+write_html( file_get_contents( "html/footer.html" ) );
+}
 
 ?>

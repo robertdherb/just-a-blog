@@ -1,4 +1,4 @@
 DirectoryIndex index.php
 
 RewriteEngine On
-RewriteRule ^(.*)/(.*)$ index.php?post=$1 [NC,L]
+RewriteRule ^(.*)/(.*)$ index.php?$1=$2 [NC,L]

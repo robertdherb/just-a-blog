@@ -1,7 +1,7 @@
 <?php
 $nav = "<ul class=\"nav\">\n";
 foreach( $pages as $thisPage ) {
-	$nav .= "<li id=\"" . $thisPage . "\"><a href=\"" . $url . $blogDir . "/pages/" . $thisPage . "\">" . format_name( $thisPage ) . "</a></li>\n";
+	$nav .= "\t\t\t<li id=\"" . $thisPage . "\">\n\t\t\t\t<a href=\"/" . $url . $blogDir . "/pages/" . $thisPage . "\">" . format_name( $thisPage ) . "</a></li>\n";
 }
 $nav .= "</ul>";
 $title = "Just a Blog";
