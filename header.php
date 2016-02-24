@@ -11,5 +11,5 @@ if( isset( $_GET['page'] ) ) {
 	$title .= " - " . format_name( $thisPage );
 }
 
-write_html( file_get_contents( "html/header.html" ), $title, $nav );
+write_html( file_get_contents( "html/header.html" ), $title, $blogDir, $nav );
 ?>
