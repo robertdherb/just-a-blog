@@ -6,32 +6,45 @@
 body {
 	padding-left: 10%;
 	padding-right: 10%;
+	color: #565e65;
+	background-color: #f3f4f5;
 }
 
 
-a {
+a, a.visited {
+	color: #95c7ae;
+}
 
+
+a.active {
+	color: #ae95c7;
 }
 
 
 h1 {
-
+	color: #1c2023;
 }
 
 
 h2 {
-
+	color: #1c2023;
 }
 
 
 h3 {
-
+	color: #1c2023;
 }
 
 
-ul {
-
+ul.nav {
+	list-style-type: none;
+	padding-left: 0;
 }
+
+
+	.nav > li {
+		display: inline;
+	}
 
 
 ol {
@@ -49,8 +62,12 @@ p {
 }
 
 
-code {
-
+pre {
+	border: 5px solid #c7ae95;
+	background-color: #c795ae;
+	margin-left: 5%;
+	margin-right: 5%;
+	padding: 5px;
 }
 
 
