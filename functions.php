@@ -79,10 +79,10 @@ function set_title() {
 
 }
 
-function build_nav() {
+function build_nav( $arrayOfPages ) {
 
 	$nav = "<ul class=\"nav\">\n";
-	foreach( $pages as $thisPage ) {
+	foreach( $arrayOfPages as $thisPage ) {
 		#$nav .= "\t\t\t<li id=\"" . $thisPage . "\">\n\t\t\t\t<a href=\"" . URL . BLOG_DIR . "/page/" . link_name( $thisPage ) . "\">" . format_name( $thisPage ) . "</a></li>\n";
 		$nav .= "\t\t\t<li id=\"" . $thisPage . "\">\n\t\t\t\t<a href=\"" . URL . BLOG_DIR . "index.php?page=" . link_name( $thisPage ) . "\">" . format_name( $thisPage ) . "</a></li>\n";
 	}
