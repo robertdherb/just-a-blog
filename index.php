@@ -16,26 +16,14 @@
 $documentRoot = $_SERVER["DOCUMENT_ROOT"];
 require_once( "functions.php" );
 require_once( "lib/parsedown/Parsedown.php" );
+require_once( "config.php" );
 
-	/* This should probably be an ini file */
-define( "TITLE", "Just-A-Blog" );
-define( "URL", "http://robertdherb.com/" );
-if( file_exists( "./blogdir.txt" ) ) {
-	$blogDir = file_get_contents( "blogdir.txt" );
-}
-
-else {
-	trigger_error( "Could not find blogdir.txt, make sure it is in the same
-	directory as index.php. Assuming blog is at \"/\"", E_USER_NOTICE );
-	
-	$blogDir = "";
-}
 $title = TITLE; // Change the defined title to a var to let me change it later.
 
-//$blogDir = $documentRoot . "/" . 
-	preg_match( "([0-9A-Za-z_\-]+)", $blogDir ) . "/";
+//BLOGDIR = $documentRoot . "/" . 
+	preg_match( "([0-9A-Za-z_\-]+)", BLOGDIR ) . "/";
 
-	define( "BLOG_DIR", $blogDir );
+	define( "BLOG_DIR", BLOGDIR );
 
 $pages = scandir( "pages/" );
 $pages = array_diff( $pages, array( "..", "." ) );
@@ -50,7 +38,7 @@ sort( $pages );
 
 // Build the header
 $headerHtml = "templates/header.html";
-write_html( file_get_contents( "html/header.html" ), set_title(), $blogDir, build_nav( $pages ) );
+write_html( file_get_contents( "html/header.html" ), set_title(), BLOGDIR, build_nav( $pages ) );
 $parsedown = new Parsedown();
 
 if( isset( $_GET['page'] ) ) {
