@@ -70,9 +70,11 @@ function post_list() {
 
 function set_title() {
 
+	$title = TITLE;
+
 	if( isset( $_GET['page'] ) ) {
 		$thisPage = $_GET['page'];
-		$title = TITLE . " - " . format_name( $thisPage );
+		$title .= " - " . format_name( $thisPage );
 	}
 
 	return $title;

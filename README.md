@@ -11,6 +11,7 @@ A simple blog software that doesn't require a database, and separates content fr
 -- just-a-blog only requires PHP5+. No databases are necessary.
 -- Can port existing HTML pages and posts directly into just-a-blog with no need to reformat. (Just remember to change the extension to .md)
 - Full customization - Since just-a-blog strives to be small and lightweight, editing it should be extremely easy.
+- No frameworks, no package managers. Just put the php files on your server in your preferred method. I guess you could do this with other softwares, but JAB *encourages* it.
 
 ## Install
 
