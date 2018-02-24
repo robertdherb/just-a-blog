@@ -30,7 +30,7 @@ function write_html() {
 
 function format_name( $name ) {
 
-	$returnThisName = preg_replace( "(_)", " ", $name );
+	$returnThisName = preg_replace( "(-)", " ", $name );
 	$returnThisName = substr( $returnThisName, 0, strpos( $returnThisName, ".md" ) );
 	$returnThisName = ucwords( $returnThisName );
 
@@ -58,7 +58,8 @@ function post_list() {
 	$output = "\n\t<ul id=\"posts\">";
 	
 	foreach( $posts as $thisPost ) {
-		$output .= "\n\t\t<li><a href=\"" . URL . BLOG_DIR . "/post/" . link_name( $thisPost ) . "\">" . date( "Y-m-d", key( $posts ) ) . " - " . format_name( $thisPost ) . "</a></li>";
+		# $output .= "\n\t\t<li><a href=\"" . URL . BLOG_DIR . "/post/" . link_name( $thisPost ) . "\">" . date( "Y-m-d", key( $posts ) ) . " - " . format_name( $thisPost ) . "</a></li>";
+		$output .= "\n\t\t<li><a href=\"" . URL . BLOG_DIR . "/index.php?post=" . link_name( $thisPost ) . "\">" . date( "Y-m-d", key( $posts ) ) . " - " . format_name( $thisPost ) . "</a></li>";
 	}
 
 	$output .= "\n\t</ul>";

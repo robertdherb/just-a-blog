@@ -18,7 +18,7 @@ require_once( "functions.php" );
 require_once( "lib/parsedown/Parsedown.php" );
 
 	/* This should probably be an ini file */
-define( "URL", "http://localhost/" );
+define( "URL", "http://robertdherb.com/" );
 if( file_exists( "./blogdir.txt" ) ) {
 	$blogDir = file_get_contents( "blogdir.txt" );
 }
