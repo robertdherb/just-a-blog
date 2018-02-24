@@ -28,7 +28,6 @@ Posts are sorted by last edit time. This moves recently edited posts to the top 
 
 ## TODO
 
- - I never commited Parsedown.html, so be sure to do that some time.
  - Make it easier to siwtch cannonical URLs on and off
 
 ## Contact
