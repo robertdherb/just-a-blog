@@ -68,6 +68,17 @@ function post_list() {
 
 }
 
+function set_title() {
+
+	if( isset( $_GET['page'] ) ) {
+		$thisPage = $_GET['page'];
+		$title = TITLE . " - " . format_name( $thisPage );
+	}
+
+	return $title;
+
+}
+
 function build_nav() {
 
 	$nav = "<ul class=\"nav\">\n";
@@ -76,6 +87,8 @@ function build_nav() {
 		$nav .= "\t\t\t<li id=\"" . $thisPage . "\">\n\t\t\t\t<a href=\"" . URL . BLOG_DIR . "index.php?page=" . link_name( $thisPage ) . "\">" . format_name( $thisPage ) . "</a></li>\n";
 	}
 	$nav .= "</ul>";
+
+	return $nav;
 }
 
 ?>

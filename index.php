@@ -18,6 +18,7 @@ require_once( "functions.php" );
 require_once( "lib/parsedown/Parsedown.php" );
 
 	/* This should probably be an ini file */
+define( "TITLE", "Just-A-Blog" );
 define( "URL", "http://robertdherb.com/" );
 if( file_exists( "./blogdir.txt" ) ) {
 	$blogDir = file_get_contents( "blogdir.txt" );
@@ -29,6 +30,7 @@ else {
 	
 	$blogDir = "";
 }
+$title = TITLE; // Change the defined title to a var to let me change it later.
 
 //$blogDir = $documentRoot . "/" . 
 	preg_match( "([0-9A-Za-z_\-]+)", $blogDir ) . "/";
@@ -46,6 +48,7 @@ if( !file_exists( "pages/home.md" ) ) {
 
 sort( $pages );
 
+// Build the header
 $headerHtml = "templates/header.html";
 include( "header.php" );
 $parsedown = new Parsedown();
