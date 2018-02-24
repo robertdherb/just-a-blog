@@ -50,7 +50,7 @@ sort( $pages );
 
 // Build the header
 $headerHtml = "templates/header.html";
-include( "header.php" );
+write_html( file_get_contents( "html/header.html" ), set_title(), $blogDir, build_nav( $pages ) );
 $parsedown = new Parsedown();
 
 if( isset( $_GET['page'] ) ) {
