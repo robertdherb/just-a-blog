@@ -30,6 +30,8 @@ Posts are sorted by last edit time. This moves recently edited posts to the top 
 ## TODO
 
  - Make it easier to siwtch cannonical URLs on and off
+ - Maybe categories/tags?
+ - Make better use of the write_html() function in functions.php (lots of display-related stuff currently can't be changed without editing that file!)
 
 ## Contact
 Send an email to just-a-blog@robertdherb.com, or try to find me on Skype (rawbherb) or Steam (abigtimeoperator)
