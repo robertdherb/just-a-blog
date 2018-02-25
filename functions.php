@@ -63,7 +63,7 @@ function get_posts() {
 	$argc = func_num_args();
 	$argv = func_get_args();
 	
-	$posts = array_diff( scandir( "posts/" ), array( "..", "." ) );
+	$posts = preg_grep( '~\.md$~', scandir( "posts/" ) );
 	$postDates = array();
 	foreach( $posts as $thisPost ) {
 		$postDates[] = filectime( "posts/" . $thisPost);

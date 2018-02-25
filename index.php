@@ -25,8 +25,7 @@ $title = TITLE; // Change the defined title to a var to let me change it later.
 
 	define( "BLOG_DIR", BLOGDIR );
 
-$pages = scandir( "pages/" );
-$pages = array_diff( $pages, array( "..", "." ) );
+$pages = preg_grep( '~\.md$~', scandir( "pages/" ) );
 
 	/* Make sure a home page exists. One should be supplied for you. */
 if( !file_exists( "pages/home.md" ) ) {
