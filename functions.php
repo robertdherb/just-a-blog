@@ -83,17 +83,16 @@ function get_posts() {
 function get_post_snippet( $post ) {
 
 	$content = file_get_contents( "posts/" . $post );
-
 	if( strlen( $content ) > 500 ) {
-		$shortText = substr($content, 0, strpos( $content, '.', 500) ); // Short text to first period after 500 characters
+		$shortText = substr($content, 0, strpos( $content, ".", 500) + 1 ); // Short text to first period after 500 characters
 	}
 	else {
-		$shorText = $content;
+		$shortText = $content;
 	}
 
 	$parsedown = new Parsedown();
 
-	return strip_tags( $parsedown->text( $content ) );
+	return strip_tags( $parsedown->text( $shortText ) );
 
 }
 
