@@ -37,7 +37,6 @@ if( !file_exists( "pages/home.md" ) ) {
 sort( $pages );
 
 // Build the header
-$headerHtml = "templates/header.html";
 write_html( file_get_contents( "html/header.html" ), set_title(), BLOGDIR, build_nav( $pages ) );
 $parsedown = new Parsedown();
 

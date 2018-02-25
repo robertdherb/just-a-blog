@@ -22,9 +22,29 @@ function write_html() {
 		}
 	}
 
-	$output = str_replace( "{allposts}", post_list(), $output );
+// This is ripe for breaking stuff. Move this into a different function please.
+	$output = str_replace( "{allposts}", build_blog(), $output );
 
 	print( $output );
+
+}
+
+function build_blog() {
+	
+	$posts = get_posts();
+	$returnThisPunk = "<ul id=\"listOfPosts\">";
+
+	foreach( $posts as $date => $thisPost ) {
+		$returnThisPunk .= "<li class=\"postSnippet\">\n\t
+<span class=\"listTitle\"><a href=\"" . URL . BLOGDIR . "/" . $thisPost . "\">" .
+format_name( $thisPost ) . " - <span style=\"postListDate\">" .
+date( "Y-m-d", $date ) . "</span></a></span><br />" .
+get_post_snippet( $thisPost );
+	}
+
+	$returnThisPunk .= "</ul>";
+
+	return $returnThisPunk;
 
 }
 
@@ -38,14 +58,12 @@ function format_name( $name ) {
 
 }
 
-function link_name( $name ) {
-	return str_replace( ".md", "", $name );
-}
-
-function post_list() {
+function get_posts() {
 	
-	$posts = scandir( "posts/" );
-	$posts = array_diff( $posts, array( "..", "." ) );
+	$argc = func_num_args();
+	$argv = func_get_args();
+	
+	$posts = array_diff( scandir( "posts/" ), array( "..", "." ) );
 	$postDates = array();
 	foreach( $posts as $thisPost ) {
 		$postDates[] = filectime( "posts/" . $thisPost);
@@ -54,6 +72,38 @@ function post_list() {
 	$posts = array_combine( $postDates, $posts );
 	krsort( $posts );
 
+	if( $argc && $argv[0] > 1 ) {
+		$posts = array_slice( $posts, 0, $argv[0] );
+	}
+
+	return $posts;
+
+}
+
+function get_post_snippet( $post ) {
+
+	$content = file_get_contents( "posts/" . $post );
+
+	if( strlen( $content ) > 500 ) {
+		$shortText = substr($content, 0, strpos( $content, '.', 500) ); // Short text to first period after 500 characters
+	}
+	else {
+		$shorText = $content;
+	}
+
+	$parsedown = new Parsedown();
+
+	return strip_tags( $parsedown->text( $content ) );
+
+}
+
+function link_name( $name ) {
+	return str_replace( ".md", "", $name );
+}
+
+function list_all_posts() {
+	
+	$posts = get_posts();
 
 	$output = "\n\t<ul id=\"posts\">";
 	
